@@ -1,0 +1,3 @@
+# Zabbix Templates
+
+* Restic Backup

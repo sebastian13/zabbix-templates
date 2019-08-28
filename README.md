@@ -1,3 +1,4 @@
 # Zabbix Templates
 
-* Restic Backup
+* [Restic Backup](https://github.com/sebastian13/zabbix-templates/tree/master/restic-backup)
+* [Speedtest](https://github.com/sebastian13/zabbix-templates/tree/master/speedtest)

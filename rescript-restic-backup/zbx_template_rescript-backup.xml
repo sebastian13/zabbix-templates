@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2019-12-08T20:46:18Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Rescript Restic Backup</template>
+            <name>Template Rescript Restic Backup</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Repo Discovery</name>
+                    <type>TRAP</type>
+                    <key>rescript.repo.discovery[discoverrepos]</key>
+                    <delay>0</delay>
+                    <lifetime>3d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Rescript Backup Bytes Added to {#REPO}</name>
+                            <type>TRAP</type>
+                            <key>rescript.backup.added[{#REPO}]</key>
+                            <delay>0</delay>
+                            <units>B</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Backup Processed Bytes to {#REPO}</name>
+                            <type>TRAP</type>
+                            <key>rescript.backup.processedbytes[{#REPO}]</key>
+                            <delay>0</delay>
+                            <units>B</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Backup Processed Time to {#REPO}</name>
+                            <type>TRAP</type>
+                            <key>rescript.backup.processedtime[{#REPO}]</key>
+                            <delay>0</delay>
+                            <units>s</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Backup Snapshot-ID to {#REPO}</name>
+                            <type>TRAP</type>
+                            <key>rescript.backup.snapshotid[{#REPO}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{nodata(2d)}=1</expression>
+                                    <name>Rescript Restic Backup on {HOST.NAME} to {#REPO} is outstanding</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Check of {#REPO}</name>
+                            <type>TRAP</type>
+                            <key>rescript.check.message[{#REPO}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Check: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{regexp(failed)}=1</expression>
+                                    <name>Rescript Restic Check on {HOST.NAME} to {#REPO} failed</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Checksum of {#REPO}.conf</name>
+                            <type>TRAP</type>
+                            <key>rescript.config.cksum[{#REPO}]</key>
+                            <delay>0</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{diff(0)}&gt;0</expression>
+                                    <name>Rescript Restic config has been changed on {HOST.NAME} to {#REPO}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>

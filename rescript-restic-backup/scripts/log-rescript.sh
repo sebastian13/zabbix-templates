@@ -11,10 +11,8 @@ echo
 arr=()
 
 echo "--> Running discovery of rescript repos"
-REPODISC=$(/etc/zabbix/zabbix_agentd.d/rescript-repo-discovery.pl /root/.rescript/config/)
+REPODISC=$(/etc/zabbix/scripts/rescript-repo-discovery.pl /root/.rescript/config/)
 zabbix_sender --config /etc/zabbix/zabbix_agentd.conf --key "rescript.repo.discovery[discoverrepos]" --value "$REPODISC"
-echo "Zabbix needs a minute to process new items discovered..."
-sleep 30
 echo
 
 # Identify the most recent rescript-log
@@ -65,4 +63,11 @@ echo
 echo "--> Sending everything to Zabbix"
 # for ix in ${!arr[*]}; do printf "%s\n" "${arr[$ix]}"; done
 # echo
-for ix in ${!arr[*]}; do printf "%s\n" "${arr[$ix]}"; done | zabbix_sender --config /etc/zabbix/zabbix_agentd.conf --with-timestamps --input-file -
+send-to-zabbix () {
+	for ix in ${!arr[*]}; do printf "%s\n" "${arr[$ix]}"; done | zabbix_sender --config /etc/zabbix/zabbix_agentd.conf --with-timestamps --input-file -
+}
+
+# Send Data
+# It might be the case that the Zabbix Server has not fully processed the discovery of new items yet.
+# If sending raises an error, the script starts a second try after one minute.
+send-to-zabbix || { echo "[ERROR] Sending or processing of some items failed. Will wait one minute before trying again..."; sleep 60; send-to-zabbix; }

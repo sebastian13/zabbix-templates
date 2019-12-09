@@ -19,25 +19,32 @@ This script logs [restic backup](https://restic.net/) tasks to Zabbix, when usin
 
 ## How to Use
 
-1. Download the script **log-rescript.sh** to any place you like. I would recommend **/etc/zabbix/scripts/**
-1. Download **rescript-repo-discovery.pl** to **/etc/zabbix/zabbix\_agentd.d/**
-1. Upload the **zbx\_template\_rescript-backup** to Zabbix and assign it to a host
+1. Download **log-rescript.sh** and **rescript-repo-discovery.pl** to `/etc/zabbix/scripts/`
+
+  ```bash
+  mkdir -p /etc/zabbix/scripts
+  cd /etc/zabbix/scripts
+  curl -O https://raw.githubusercontent.com/sebastian13/zabbix-templates/master/rescript-restic-backup/scripts/log-rescript.sh
+  curl -O https://raw.githubusercontent.com/sebastian13/zabbix-templates/master/rescript-restic-backup/scripts/rescript-repo-discovery.pl
+  chmod +x log-rescript.sh rescript-repo-discovery.pl
+  ``` 
+
+1. Upload the template **zbx\_template\_rescript-backup** to Zabbix Server and assign it to a host
+
 1. Run the script after each **rescript** call
 
 ### Example
 ```bash
 #!/bin/bash
 
-# Run rescript automatic function
+# Run rescript's automatic function
 rescript example.repo.1
-
 # send logs to zabbix
-source /etc/zabbix/scripts/log-backup.sh
+source /etc/zabbix/scripts/log-rescript.sh
 
-# Run another rescript backup
 # Using a rescript command requires the --log flag
 rescript example.repo.2 backup -l
-source /etc/zabbix/scripts/log-backup.sh
+source /etc/zabbix/scripts/log-rescript.sh
 
 ```
 

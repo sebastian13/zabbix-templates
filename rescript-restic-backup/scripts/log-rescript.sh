@@ -37,14 +37,14 @@ arr+=("- rescript.backup.added[$REPO] $TIME $RLOG_ADDED")
 
 
 # Extract Processed Time
-RLOG_PROCESSED_TIME=$(cat $RLOG | grep '^processed' | \
+RLOG_PROCESSED_TIME=$(cat $RLOG | grep '^processed.*files' | \
 		    awk '{print $NF}' | \
 		    awk -F':' '{print (NF>2 ? $(NF-2)*3600 : 0) + (NF>1 ? $(NF-1)*60 : 0) + $(NF)}' )
 arr+=("- rescript.backup.processedtime[$REPO] $TIME $RLOG_PROCESSED_TIME")
 
 
 # Extract Processed Bytes
-RLOG_PROCESSED_BYTES=$(cat $RLOG | grep '^processed' | \
+RLOG_PROCESSED_BYTES=$(cat $RLOG | grep '^processed.*files' | \
 		     awk '{print $4,$5}' | \
 		     python3 -c 'import sys; import humanfriendly; print (humanfriendly.parse_size(sys.stdin.read(), binary=True))'  )
 arr+=("- rescript.backup.processedbytes[$REPO] $TIME $RLOG_PROCESSED_BYTES")

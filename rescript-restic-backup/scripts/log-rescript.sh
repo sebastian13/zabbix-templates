@@ -51,7 +51,7 @@ arr+=("- rescript.backup.processedbytes[$REPO] $TIME $RLOG_PROCESSED_BYTES")
 
 
 # Log Restic Check
-RLOG_CHECK=$( grep "Starting check..." $RLOG ) && echo "--> Restic Check Logging" || echo "Restic Check wasn't started."
+RLOG_CHECK=$( grep "Checking for Errors\|Starting check..." $RLOG ) && echo "--> Restic Check Logging" || echo "Restic Check wasn't started."
 if [ "$RLOG_CHECK" ]
 then
   RLOG_CHECK_RESULT=$( grep "no errors were found" $RLOG ) || RLOG_CHECK_RESULT=$(grep "ciphertext verification failed" $LOG)

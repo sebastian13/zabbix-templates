@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2019-12-08T20:46:18Z</date>
+    <date>2019-12-13T09:29:30Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -25,7 +25,7 @@
                     <lifetime>3d</lifetime>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Rescript Backup Bytes Added to {#REPO}</name>
+                            <name>Rescript Backup: Bytes Added ({#REPO})</name>
                             <type>TRAP</type>
                             <key>rescript.backup.added[{#REPO}]</key>
                             <delay>0</delay>
@@ -37,7 +37,7 @@
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Rescript Backup Processed Bytes to {#REPO}</name>
+                            <name>Rescript Backup: Processed Bytes ({#REPO})</name>
                             <type>TRAP</type>
                             <key>rescript.backup.processedbytes[{#REPO}]</key>
                             <delay>0</delay>
@@ -49,7 +49,7 @@
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Rescript Backup Processed Time to {#REPO}</name>
+                            <name>Rescript Backup: Processed Time to ({#REPO})</name>
                             <type>TRAP</type>
                             <key>rescript.backup.processedtime[{#REPO}]</key>
                             <delay>0</delay>
@@ -61,7 +61,7 @@
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Rescript Backup Snapshot-ID to {#REPO}</name>
+                            <name>Rescript Backup: Snapshot-ID ({#REPO})</name>
                             <type>TRAP</type>
                             <key>rescript.backup.snapshotid[{#REPO}]</key>
                             <delay>0</delay>
@@ -81,7 +81,7 @@
                             </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
-                            <name>Rescript Check of {#REPO}</name>
+                            <name>Rescript Check: Message ({#REPO})</name>
                             <type>TRAP</type>
                             <key>rescript.check.message[{#REPO}]</key>
                             <delay>0</delay>
@@ -89,7 +89,7 @@
                             <value_type>CHAR</value_type>
                             <application_prototypes>
                                 <application_prototype>
-                                    <name>Rescript Restic Check: {#REPO}</name>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
                                 </application_prototype>
                             </application_prototypes>
                             <trigger_prototypes>
@@ -117,6 +117,87 @@
                                     <priority>WARNING</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Number of Packs Deleted ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.delpacks[{#REPO}]</key>
+                            <delay>0</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Freed Space ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.freedspace[{#REPO}]</key>
+                            <delay>0</delay>
+                            <units>B</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Number of Packs ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.packs[{#REPO}]</key>
+                            <delay>0</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Policy ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.policy[{#REPO}]</key>
+                            <delay>0</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Invalid Files Removed ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.remfiles[{#REPO}]</key>
+                            <delay>0</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Number of Packs Rewritten ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.rewpacks[{#REPO}]</key>
+                            <delay>0</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Rescript Prune: Total Size ({#REPO})</name>
+                            <type>TRAP</type>
+                            <key>rescript.prune.size[{#REPO}]</key>
+                            <delay>0</delay>
+                            <units>B</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Rescript Restic Backup: {#REPO}</name>
+                                </application_prototype>
+                            </application_prototypes>
                         </item_prototype>
                     </item_prototypes>
                 </discovery_rule>

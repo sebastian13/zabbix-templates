@@ -29,9 +29,9 @@ This script logs [restic backup](https://restic.net/) tasks to Zabbix, when usin
   chmod +x log-rescript.sh rescript-repo-discovery.pl
   ``` 
 
-1. Upload the template **zbx\_template\_rescript-backup** to Zabbix Server and assign it to a host
+2. Upload the template **zbx\_template\_rescript-backup** to Zabbix Server and assign it to a host
 
-1. Run the script after each **rescript** call
+3. Run the script after each **rescript** call
 
 ### Examples
 - As simple as
@@ -40,7 +40,7 @@ This script logs [restic backup](https://restic.net/) tasks to Zabbix, when usin
 	rescript reponame && /etc/zabbix/scripts/log-rescript.sh
 	```
 
-- Running as cronjob, I'm reccomending [chronic from moreutils](http://manpages.ubuntu.com/manpages/xenial/man1/chronic.1.html)
+- Running as cronjob, I'm reccomending using [chronic from moreutils](http://manpages.ubuntu.com/manpages/xenial/man1/chronic.1.html)
 
 	```bash
 	26 3 * * * chronic rescript reponame && chronic /etc/zabbix/scripts/log-rescript.sh

@@ -25,7 +25,7 @@ echo
 
 # Identify the most recent rescript-log
 RLOG=$(find /root/.rescript/logs/ -type f | xargs ls -tr | tail -n 1)
-REPO=$(echo $RLOG | sed 's/.*\/logs\///' | sed 's/-.*//')
+REPO=$(echo $RLOG | sed 's/.*\/logs\///' | sed 's/-backup-log-.*//; s/-cleanup-log-.*//; s/-log-.*//;')
 TIME=$(stat -c '%015Y' $RLOG)
 
 echo "Extracting from:  $RLOG"

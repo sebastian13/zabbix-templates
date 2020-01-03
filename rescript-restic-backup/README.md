@@ -73,3 +73,6 @@ This script logs [restic backup](https://restic.net/) tasks to Zabbix, when usin
 	
 	```
 
+## Rescript LVM Backup Monitoring
+
+This template also enables monitoring of LVM backups via restic and rescript. Take a look at the [lvm-restic-backup script](https://github.com/sebastian13/lvm-restic-backup) for detailed instructions.
